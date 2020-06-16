@@ -1,0 +1,2 @@
+resolvers += Resolver.typesafeRepo("releases")
+

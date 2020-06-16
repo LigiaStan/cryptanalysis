@@ -1,0 +1,7 @@
+# IntelliJ
+.idea/
+
+# SBT
+dist/
+target/
+project/plugins/project/
