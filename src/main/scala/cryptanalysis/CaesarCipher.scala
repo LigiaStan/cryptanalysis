@@ -4,9 +4,12 @@ object CaesarCipher extends App {
 
   val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   val key = 1
-  val text = "LIGIA IS THE BEST"
+  val text = "LIGIA IS THE BEST!"
 
-  def encrypt(alphabet: String, text: String, key: Int): String = text.map{char => shift(alphabet, char, key)}
+  def encrypt(alphabet: String, text: String, key: Int): String = {
+    val textWithNoPunctuation = text.replaceAll("""[\p{Punct}]""", "")
+    textWithNoPunctuation.map{char => shift(alphabet, char, key)}
+  }
   def decrypt(alphabet: String, text: String, key: Int): String = encrypt(alphabet, text, -key)
 
   val encryption = encrypt(alphabet, text, key)
