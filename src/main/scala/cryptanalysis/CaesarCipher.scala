@@ -1,23 +1,13 @@
 package cryptanalysis
 
-object CaesarCipher extends App {
+object CaesarCipher extends Cipher[Int] {
 
-  val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  val key = 1
-  val text = "LIGIA IS THE BEST!"
-
-  def encrypt(alphabet: String, text: String, key: Int): String = {
+  override def encrypt(alphabet: String, text: String, key: Int): String = {
     val textWithNoPunctuation = text.replaceAll("""[\p{Punct}]""", "")
     textWithNoPunctuation.map{char => shift(alphabet, char, key)}
   }
-  def decrypt(alphabet: String, text: String, key: Int): String = encrypt(alphabet, text, -key)
 
-  val encryption = encrypt(alphabet, text, key)
-  val decryption = decrypt(alphabet, encryption, key)
-
-  println(s"Plain text: $text")
-  println(s"Cipher: $encryption")
-  println(s"Decipher: $decryption")
+  override def decrypt(alphabet: String, text: String, key: Int): String = encrypt(alphabet, text, -key)
 
   def shift(alphabet: String, character: Char, key: Int): Char = {
     val charIndex = alphabet.indexOf(character.toUpper)
